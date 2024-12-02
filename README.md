@@ -1,1 +1,1 @@
-# openapi-generator
+# OpenAPI SDK
