@@ -23,6 +23,7 @@ jobs:
 
     test:
         name: Test SDK package
+        needs: check-version
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -45,6 +46,7 @@ jobs:
 
     publish-sdk:
         name: Build and publish SDK package
+        needs: test
         runs-on: ubuntu-latest
         permissions:
             contents: read
