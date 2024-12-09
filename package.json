@@ -18,8 +18,10 @@
     "release:minor": "git switch master && git pull && npm version minor && git push && npm run release",
     "release:major": "git switch master && git pull && npm version major && git push && npm run release"
   },
+  "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.13.4"
+  },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.13.4",
     "@types/node": "^20.14.2",
     "typescript": "^5.4.5",
     "vitest": "^2.0.5"
