@@ -11,7 +11,6 @@
     "url": "git+https://github.com/SmallhillCZ/openapi-sdk"
   },
   "scripts": {
-    "check-npm-version": "bash scripts/check-npm-version.sh",
     "test": "vitest",
     "pretest": "openapi-generator-cli generate --generator-key axios-test",
     "release": "git switch release && git merge master --ff-only && git push --follow-tags && git switch master",
