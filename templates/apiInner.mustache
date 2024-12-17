@@ -207,7 +207,8 @@ export class {{classname}} extends BaseAPI {
         axiosRequestConfig.data = serializeDataIfNeeded(body, axiosRequestConfig, this.configuration)
 {{/bodyParam}}
 
-        axiosRequestConfig["url"] = (this.configuration.basePath || BASE_PATH) + toPathString(requestUrlObj);
+        axiosRequestConfig["url"] = toPathString(requestUrlObj);
+        axiosRequestConfig["baseURL"] = this.configuration.basePath;
         
         return this.axios.request<{{{returnType}}}{{^returnType}}void{{/returnType}}>(axiosRequestConfig);
     }
