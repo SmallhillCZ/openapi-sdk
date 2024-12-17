@@ -46,8 +46,8 @@ jobs:
           node-version: "22.x"
           cache: "npm"
           cache-dependency-path: package-lock.json
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH_TOKEN}}
 
       - name: Publish SDK
         run: npm publish --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH_TOKEN}}
