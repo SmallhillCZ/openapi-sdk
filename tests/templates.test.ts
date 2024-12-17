@@ -15,7 +15,8 @@ test("test basic request", async () => {
 	expect(axios.request).toHaveBeenCalledWith({
 		headers: {},
 		method: "GET",
-		url: "http://localhost:3000/api/test",
+		url: "/api/test",
+		baseURL: "http://localhost:3000",
 	});
 	expect(res.status).toBe(200);
 	expect(res.data).toBe("OK");
@@ -27,7 +28,8 @@ test("test param in request", async () => {
 	expect(axios.request).toHaveBeenCalledWith({
 		headers: {},
 		method: "GET",
-		url: "http://localhost:3000/api/test-param/10",
+		url: "/api/test-param/10",
+		baseURL: "http://localhost:3000",
 	});
 });
 
@@ -42,6 +44,7 @@ test("test query in request", async () => {
 	expect(axios.request).toHaveBeenCalledWith({
 		headers: {},
 		method: "GET",
-		url: "http://localhost:3000/api/test-query?test_key=15&test_enum_key=test",
+		url: "/api/test-query?test_key=15&test_enum_key=test",
+		baseURL: "http://localhost:3000",
 	});
 });
