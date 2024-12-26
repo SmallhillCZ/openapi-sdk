@@ -81,7 +81,7 @@ export interface {{classname}}{{operationIdCamelCase}}QueryParams {
  * @interface {{classname}}{{operationIdCamelCase}}HeaderParams
  */
 export interface {{classname}}{{operationIdCamelCase}}HeaderParams {
-    {{#queryParams}}
+    {{#headerParams}}
     /**
      * {{description}}
      * @type {{=<% %>=}}{<%&dataType%>}<%={{ }}=%>
@@ -91,7 +91,7 @@ export interface {{classname}}{{operationIdCamelCase}}HeaderParams {
     {{^-last}}
 
     {{/-last}}
-    {{/queryParams}}
+    {{/headerParams}}
 }
 
 {{/headerParams.0}}
