@@ -33,6 +33,11 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+echo -e "\033[33mGenerating SDK...\033[0m"
+
+# echo used command
+echo "$GENERATOR_BIN generate -g typescript-axios -t $PACKAGE_ROOT/templates $@"
+
 $GENERATOR_BIN generate \
     -g typescript-axios \
     -t $PACKAGE_ROOT/templates \

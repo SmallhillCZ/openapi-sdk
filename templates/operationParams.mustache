@@ -5,7 +5,7 @@
   * @export
   * @enum {string}
   */
-export enum {{enumName}} {
+export enum {{operationIdCamelCase}}{{enumName}} {
 {{#allowableValues}}
     {{#enumVars}}
     {{{name}}} = {{{value}}}{{^-last}},{{/-last}}
@@ -17,39 +17,18 @@ export enum {{enumName}} {
 /**
  * @export
  */
-export const {{enumName}} = {
+export const {{operationIdCamelCase}}{{enumName}} = {
 {{#allowableValues}}
     {{#enumVars}}
     {{{name}}}: {{{value}}}{{^-last}},{{/-last}}
     {{/enumVars}}
 {{/allowableValues}}
 } as const;
-export type {{enumName}} = typeof {{enumName}}[keyof typeof {{enumName}}];
+export type {{operationIdCamelCase}}{{enumName}} = typeof {{operationIdCamelCase}}{{enumName}}[keyof typeof {{operationIdCamelCase}}{{enumName}}];
 {{/stringEnums}}
 {{/isEnum}}
 {{/allParams}}
 
-{{#allParams.0}}
-/**
- * All parameters for {{nickname}} operation in {{classname}}.
- * @export
- * @interface {{classname}}{{operationIdCamelCase}}Request
- */
-export interface {{classname}}{{operationIdCamelCase}}Request {
-    {{#allParams}}
-    /**
-     * {{description}}
-     * @type {{=<% %>=}}{<%&dataType%>}<%={{ }}=%>
-     * @memberof {{classname}}{{operationIdCamelCase}}
-     */
-    readonly {{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}}
-    {{^-last}}
-
-    {{/-last}}
-    {{/allParams}}
-}
-
-{{/allParams.0}}
 
 {{#queryParams.0}}
 /**
@@ -65,7 +44,7 @@ export interface {{classname}}{{operationIdCamelCase}}QueryParams {
      * @type {{=<% %>=}}{<%&dataType%>}<%={{ }}=%>
      * @memberof {{classname}}{{operationIdCamelCase}}
      */
-    {{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}}
+    {{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{#isArray}}Array<{{operationIdCamelCase}}{{{enumName}}}>{{/isArray}}{{^isArray}}{{operationIdCamelCase}}{{{enumName}}}{{/isArray}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}}
     {{^-last}}
 
     {{/-last}}
@@ -87,7 +66,7 @@ export interface {{classname}}{{operationIdCamelCase}}HeaderParams {
      * @type {{=<% %>=}}{<%&dataType%>}<%={{ }}=%>
      * @memberof {{classname}}{{operationIdCamelCase}}
      */
-    {{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}}
+    {{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{operationIdCamelCase}}{{{enumName}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}}
     {{^-last}}
 
     {{/-last}}
