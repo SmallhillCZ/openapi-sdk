@@ -34,10 +34,7 @@ fi
 
 echo -e "\033[33mGenerating SDK...\033[0m"
 
-# echo used command
-echo "npx openapi-generator-cli generate -g typescript-axios -t $PACKAGE_ROOT/templates $@"
-
-$GENERATOR_BIN generate \
+npx openapi-generator-cli generate \
     -g typescript-axios \
     -t $PACKAGE_ROOT/templates \
     $@
