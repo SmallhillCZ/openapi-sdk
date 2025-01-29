@@ -2,7 +2,6 @@
 
 PACKAGE_ROOT=$(realpath "$(dirname $(realpath $0))/..")
 VERSION=$(jq -r '.version' $PACKAGE_ROOT/package.json)
-GENERATOR_BIN=$PACKAGE_ROOT/node_modules/.bin/openapi-generator-cli
 
 display_help() {
     echo -e "\033[33mSmallhill OpenAPI SDK v$VERSION\033[0m"
@@ -36,7 +35,7 @@ fi
 echo -e "\033[33mGenerating SDK...\033[0m"
 
 # echo used command
-echo "$GENERATOR_BIN generate -g typescript-axios -t $PACKAGE_ROOT/templates $@"
+echo "npx openapi-generator-cli generate -g typescript-axios -t $PACKAGE_ROOT/templates $@"
 
 $GENERATOR_BIN generate \
     -g typescript-axios \
