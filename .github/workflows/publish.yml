@@ -50,3 +50,9 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH_TOKEN}}
+
+  # call the update workflow on github.com/smallhillcz/sdk to update the SDK package
+  update-smhl-sdk:
+    name: Update the package in Smallhill SDK
+    uses: smallhillcz/sdk/.github/workflows/update.yml@master
+
