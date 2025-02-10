@@ -55,4 +55,6 @@ jobs:
   update-smhl-sdk:
     name: Update the package in Smallhill SDK
     uses: smallhillcz/sdk/.github/workflows/update-and-publish.yml@master
+    permissions:
+      contents: write
 
