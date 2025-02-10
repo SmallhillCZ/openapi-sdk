@@ -1,10 +1,10 @@
 import axios from "axios";
 import { expect, MockedFunction, test } from "vitest";
-import { Configuration, SDK, TestEnumKeyEnum } from "./sdk";
+import { ConfigurationParameters, SDK, TestQueryTestEnumKeyEnum } from "./sdk";
 
-const configuration = new Configuration({
+const configuration: ConfigurationParameters = {
 	basePath: "http://localhost:3000",
-});
+};
 
 const api = new SDK(configuration);
 
@@ -34,10 +34,10 @@ test("test param in request", async () => {
 });
 
 test("test query in request", async () => {
-	expect(TestEnumKeyEnum).toBeDefined();
+	expect(TestQueryTestEnumKeyEnum).toBeDefined();
 
 	const res = await api.TestApi.testQuery({
-		testEnumKey: TestEnumKeyEnum.Test,
+		testEnumKey: TestQueryTestEnumKeyEnum.Test,
 		testKey: 15,
 	});
 
