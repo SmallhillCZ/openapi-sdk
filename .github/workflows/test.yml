@@ -1,4 +1,4 @@
-name: Test SDK package
+name: Test
 
 on:
   workflow_call:
