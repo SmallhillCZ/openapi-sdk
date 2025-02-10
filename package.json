@@ -12,7 +12,8 @@
   },
   "scripts": {
     "test": "vitest",
-    "pretest": "openapi-generator-cli generate --generator-key axios-test",
+    "test:generate": "openapi-generator-cli generate --generator-key axios-test",
+    "pretest": "npm run test:generate",
     "release": "git switch release && git merge master --ff-only && git push --follow-tags && git switch master",
     "release:patch": "git switch master && git pull && npm version patch && git push && npm run release",
     "release:minor": "git switch master && git pull && npm version minor && git push && npm run release",

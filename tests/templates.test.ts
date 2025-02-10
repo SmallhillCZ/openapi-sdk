@@ -1,12 +1,12 @@
 import axios from "axios";
 import { expect, MockedFunction, test } from "vitest";
-import { ConfigurationParameters, SDK, TestQueryTestEnumKeyEnum } from "./sdk";
+import { TestSdk, TestSdkConfiguration } from "./sdk";
 
-const configuration: ConfigurationParameters = {
+const configuration: TestSdkConfiguration = {
 	basePath: "http://localhost:3000",
 };
 
-const api = new SDK(configuration);
+const api = new TestSdk(configuration);
 
 (axios.request as MockedFunction<typeof axios.post>).mockResolvedValue(Promise.resolve({ status: 200, data: "OK" }));
 test("test basic request", async () => {
@@ -34,10 +34,10 @@ test("test param in request", async () => {
 });
 
 test("test query in request", async () => {
-	expect(TestQueryTestEnumKeyEnum).toBeDefined();
+	expect(TestSdk.TestQueryTestEnumKeyEnum).toBeDefined();
 
 	const res = await api.TestApi.testQuery({
-		testEnumKey: TestQueryTestEnumKeyEnum.Test,
+		testEnumKey: TestSdk.TestQueryTestEnumKeyEnum.Test,
 		testKey: 15,
 	});
 

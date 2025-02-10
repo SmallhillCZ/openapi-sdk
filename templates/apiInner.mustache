@@ -13,7 +13,7 @@
  */
 export class {{classname}} extends BaseAPI {
 
-    constructor(protected override configuration: ConfigurationParameters, protected override axios: AxiosInstance = globalAxios) {
+    constructor(protected override configuration: {{>apiName}}Configuration, protected override axios: AxiosInstance = globalAxios) {
         super(configuration, configuration.basePath, axios);
     }
 

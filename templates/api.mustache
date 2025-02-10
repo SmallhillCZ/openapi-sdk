@@ -2,7 +2,7 @@
 /* eslint-disable */
 {{>licenseInfo}}
 
-import { ConfigurationParameters, defaultConfigurationParameters } from './configuration';
+import { ConfigurationParameters as {{>apiName}}Configuration, defaultConfigurationParameters } from './configuration';
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 {{#withNodeImports}}
@@ -19,23 +19,26 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
-export namespace {{#npmName}}{{#lambda.titlecase}}{{#lambda.camelcase}}{{npmName}}{{/lambda.camelcase}}{{/lambda.titlecase}}{{/npmName}}{{^npmName}}SDK{{/npmName}} {
-    {{#models}}
+export { ConfigurationParameters as {{>apiName}}Configuration } from './configuration'; 
+
+export class {{>apiName}} {
+    {{#apiInfo}}{{#apis}}{{#operations}}    {{classname}}: {{>apiName}}.{{classname}};
+    {{/operations}}{{/apis}}{{/apiInfo}}
+        constructor(configurationParams: {{>apiName}}Configuration, axios?: AxiosInstance) {
+            const configuration = Object.assign({}, defaultConfigurationParameters, configurationParams);
+
+            if(!axios) axios = globalAxios.create();
+
+    {{#apiInfo}}{{#apis}}{{#operations}}        this.{{classname}} = new {{>apiName}}.{{classname}}(configuration, axios!);
+    {{/operations}}{{/apis}}{{/apiInfo}}    };
+}
+
+export namespace {{>apiName}} {
+{{#lambda.indented}}{{#models}}
     {{#model}}{{#isEnum}}{{>modelEnum}}{{/isEnum}}{{#oneOf}}{{#-first}}{{>modelOneOf}}{{/-first}}{{/oneOf}}{{^isEnum}}{{^oneOf}}{{>modelGeneric}}{{/oneOf}}{{/isEnum}}{{/model}}
     {{/models}}
 
     {{#apiInfo}}{{#apis}}
     {{>apiInner}}
-    {{/apis}}{{/apiInfo}}
-    export class Client {
-    {{#apiInfo}}{{#apis}}{{#operations}}    {{classname}}: {{classname}};
-    {{/operations}}{{/apis}}{{/apiInfo}}
-        constructor(configurationParams: ConfigurationParameters, axios?: AxiosInstance) {
-            const configuration = Object.assign({}, defaultConfigurationParameters, configurationParams);
-
-            if(!axios) axios = globalAxios.create();
-
-    {{#apiInfo}}{{#apis}}{{#operations}}        this.{{classname}} = new {{classname}}(configuration, axios!);
-    {{/operations}}{{/apis}}{{/apiInfo}}    };
-    }
+    {{/apis}}{{/apiInfo}}{{/lambda.indented}}
 }

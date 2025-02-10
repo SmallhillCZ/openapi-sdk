@@ -9,7 +9,10 @@
                 "generatorName": "typescript-axios",
                 "output": "./tests/sdk",
                 "inputSpec": "./tests/openapi.json",
-                "templateDir": "./templates"
+                "templateDir": "./templates",
+                "additionalProperties": {
+                    "npmName": "TestSdk"
+                }
             }
         }
     }
