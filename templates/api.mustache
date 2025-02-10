@@ -19,23 +19,23 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
-{{#models}}
-{{#model}}{{#isEnum}}{{>modelEnum}}{{/isEnum}}{{#oneOf}}{{#-first}}{{>modelOneOf}}{{/-first}}{{/oneOf}}{{^isEnum}}{{^oneOf}}{{>modelGeneric}}{{/oneOf}}{{/isEnum}}{{/model}}
-{{/models}}
+export namespace {{#npmName}}{{#lambda.titlecase}}{{#lambda.camelcase}}{{npmName}}{{/lambda.camelcase}}{{/lambda.titlecase}}{{/npmName}}{{^npmName}}SDK{{/npmName}} {
+    {{#models}}
+    {{#model}}{{#isEnum}}{{>modelEnum}}{{/isEnum}}{{#oneOf}}{{#-first}}{{>modelOneOf}}{{/-first}}{{/oneOf}}{{^isEnum}}{{^oneOf}}{{>modelGeneric}}{{/oneOf}}{{/isEnum}}{{/model}}
+    {{/models}}
 
-{{#apiInfo}}{{#apis}}
-{{>apiInner}}
-{{/apis}}{{/apiInfo}}
-export { ConfigurationParameters } from './configuration';
+    {{#apiInfo}}{{#apis}}
+    {{>apiInner}}
+    {{/apis}}{{/apiInfo}}
+    export class Client {
+    {{#apiInfo}}{{#apis}}{{#operations}}    {{classname}}: {{classname}};
+    {{/operations}}{{/apis}}{{/apiInfo}}
+        constructor(configurationParams: ConfigurationParameters, axios?: AxiosInstance) {
+            const configuration = Object.assign({}, defaultConfigurationParameters, configurationParams);
 
-export class SDK {
-{{#apiInfo}}{{#apis}}{{#operations}}    {{classname}}: {{classname}};
-{{/operations}}{{/apis}}{{/apiInfo}}
-    constructor(configurationParams: ConfigurationParameters, axios?: AxiosInstance) {
-        const configuration = Object.assign({}, defaultConfigurationParameters, configurationParams);
+            if(!axios) axios = globalAxios.create();
 
-        if(!axios) axios = globalAxios.create();
-
-{{#apiInfo}}{{#apis}}{{#operations}}        this.{{classname}} = new {{classname}}(configuration, axios!);
-{{/operations}}{{/apis}}{{/apiInfo}}    };
+    {{#apiInfo}}{{#apis}}{{#operations}}        this.{{classname}} = new {{classname}}(configuration, axios!);
+    {{/operations}}{{/apis}}{{/apiInfo}}    };
+    }
 }
