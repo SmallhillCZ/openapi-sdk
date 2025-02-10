@@ -1,7 +1,7 @@
 {
   "name": "@smallhillcz/openapi-sdk",
   "displayName": "OpenAPI SDK generator for SmallhillCZ projects",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "OpenAPI SDK generator for typescript+axios using @openapitools/openapi-generator-cli with custom templates",
   "author": {
     "name": "Martin Kopeček",
