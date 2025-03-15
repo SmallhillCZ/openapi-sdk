@@ -19,7 +19,7 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
-export { ConfigurationParameters as {{>apiName}}Configuration } from './configuration'; 
+export type { ConfigurationParameters as {{>apiName}}Configuration } from './configuration'; 
 
 export class {{>apiName}} {
     {{#apiInfo}}{{#apis}}{{#operations}}    {{classname}}: {{>apiName}}.{{classname}};
